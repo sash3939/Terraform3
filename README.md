@@ -75,8 +75,18 @@ variable "each_vm" {
 ### Задание 3
 
 1. Создайте 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле **disk_vm.tf** .
+В файле disk_vm.tf создал 3 виртуальных диска размером 1 Гб
+
+![secondary disks](https://github.com/user-attachments/assets/d0e8652f-49d8-4304-8f57-ae2ab1a04db8)
+---
+
 2. Создайте в том же файле **одиночную**(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage"  . Используйте блок **dynamic secondary_disk{..}** и мета-аргумент for_each для подключения созданных вами дополнительных дисков.
 
+![VM storage with disks](https://github.com/user-attachments/assets/6988d994-9ddc-4024-9add-db4b6498c8db)
+---
+
+![meta argument disk_vm](https://github.com/user-attachments/assets/056fd61e-5776-48ae-acbc-d2f2819a9b98)
+---
 ------
 
 ### Задание 4
@@ -85,7 +95,19 @@ variable "each_vm" {
 Используйте функцию tepmplatefile и файл-шаблон для создания ansible inventory-файла из лекции.
 Готовый код возьмите из демонстрации к лекции [**demonstration2**](https://github.com/netology-code/ter-homeworks/tree/main/03/demo).
 Передайте в него в качестве переменных группы виртуальных машин из задания 2.1, 2.2 и 3.2, т. е. 5 ВМ.
+
+![ansible tf](https://github.com/user-attachments/assets/b2898a18-dc75-4f7e-9b05-0ac7ee0a87ea)
+---
+
+![hosts tftpl](https://github.com/user-attachments/assets/4a132df5-4901-4ff0-8656-b4b804c742d4)
+---
+В файле ansible.tf использовал функцию templatefile, отредактировал файл hosts.tftpl с ипользованием созданных ранее 5 машин. После запуска terraform init -upgrade и terraform apply добавился файл hosts.cfg*, в котором описываются все 5 ВМ.
+
 2. Инвентарь должен содержать 3 группы и быть динамическим, т. е. обработать как группу из 2-х ВМ, так и 999 ВМ.
+
+![after create ansible and add terraform apply](https://github.com/user-attachments/assets/871760bb-8c45-435c-896d-5e8b5746fcc1)
+---
+
 3. Добавьте в инвентарь переменную  [**fqdn**](https://cloud.yandex.ru/docs/compute/concepts/network#hostname).
 ``` 
 [webservers]
@@ -100,7 +122,13 @@ replica ansible_host<внешний ip-адрес> fqdn=<полное домен
 storage ansible_host=<внешний ip-адрес> fqdn=<полное доменное имя виртуальной машины>
 ```
 Пример fqdn: ```web1.ru-central1.internal```(в случае указания имени ВМ); ```fhm8k1oojmm5lie8i22a.auto.internal```(в случае автоматической генерации имени ВМ зона изменяется). нужную вам переменную найдите в документации провайдера или terraform console.
+
+## Добавлена также переменная fqdn
+
 4. Выполните код. Приложите скриншот получившегося файла. 
+
+![hosts_сfg](https://github.com/user-attachments/assets/ff66d9b0-90e9-49d8-9bc8-102335f5a1de)
+---
 
 Для общего зачёта создайте в вашем GitHub-репозитории новую ветку terraform-03. Закоммитьте в эту ветку свой финальный код проекта, пришлите ссылку на коммит.   
 **Удалите все созданные ресурсы**.

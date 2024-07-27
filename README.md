@@ -23,26 +23,37 @@
 
 ### Задание 1
 
-1. Изучите проект.
-2. Заполните файл personal.auto.tfvars.
-3. Инициализируйте проект, выполните код. Он выполнится, даже если доступа к preview нет.
+1. Просмотрел проект.
+2. Заполнил файл personal.auto.tfvars.
+3. Выполнил команды "terrafrom init" и "terraform apply". 
 
 Примечание. Если у вас не активирован preview-доступ к функционалу «Группы безопасности» в Yandex Cloud, запросите доступ у поддержки облачного провайдера. Обычно его выдают в течение 24-х часов.
 
 Приложите скриншот входящих правил «Группы безопасности» в ЛК Yandex Cloud или скриншот отказа в предоставлении доступа к preview-версии.
 
+![security_groups_yandex](https://github.com/user-attachments/assets/ced0be81-0a5d-472d-bded-15c4f108e9de)
+---
+
 ------
 
 ### Задание 2
 
-1. Создайте файл count-vm.tf. Опишите в нём создание двух **одинаковых** ВМ  web-1 и web-2 (не web-0 и web-1) с минимальными параметрами, используя мета-аргумент **count loop**. Назначьте ВМ созданную в первом задании группу безопасности.(как это сделать узнайте в документации провайдера yandex/compute_instance )
-2. Создайте файл for_each-vm.tf. Опишите в нём создание двух ВМ для баз данных с именами "main" и "replica" **разных** по cpu/ram/disk_volume , используя мета-аргумент **for_each loop**. Используйте для обеих ВМ одну общую переменную типа:
-```
+1. Создал файл count-vm.tf и описал 2 одинаковые машины web-1 и web-2 с помощью цикла count. Назначена группу безопасности из задания 1.3 (https://docs.comcloud.xyz/providers/yandex-cloud/yandex/latest/docs/resources/compute_instance).
+
+2. Создайте файл for_each-vm.tf. Опишите в нём создание двух ВМ для баз данных с именами "main" и "replica" разных по cpu/ram/disk_volume , используя мета-аргумент for_each loop. Используйте для обеих ВМ одну общую переменную типа:
+
 variable "each_vm" {
   type = list(object({  vm_name=string, cpu=number, ram=number, disk_volume=number }))
 }
-```  
-При желании внесите в переменную все возможные параметры.
+
+В файле for_each-vm.tf созданы машины с помощью цикла for_each, используя переменную each_vm.
+
+![main and replica](https://github.com/user-attachments/assets/ee50ad16-c6ca-4264-bbb7-572f079196fa)
+---
+![main and replica yandex](https://github.com/user-attachments/assets/83fe4d14-d093-4bc9-928d-e4adddebd3c4)
+---
+
+
 4. ВМ из пункта 2.1 должны создаваться после создания ВМ из пункта 2.2.
 5. Используйте функцию file в local-переменной для считывания ключа ~/.ssh/id_rsa.pub и его последующего использования в блоке metadata, взятому из ДЗ 2.
 6. Инициализируйте проект, выполните код.

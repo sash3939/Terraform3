@@ -55,8 +55,20 @@ variable "each_vm" {
 
 
 4. ВМ из пункта 2.1 должны создаваться после создания ВМ из пункта 2.2.
+Использовал параметр depends_on для ВМ с web.
+
+![depends_on](https://github.com/user-attachments/assets/7c3eb6a7-578b-4afe-865b-185f0c0a1d02)
+---
+
 5. Используйте функцию file в local-переменной для считывания ключа ~/.ssh/id_rsa.pub и его последующего использования в блоке metadata, взятому из ДЗ 2.
+
+Применил функцию file для использования ssh ключей.
+
+![locals for metadata](https://github.com/user-attachments/assets/5c34f3f9-9e90-44af-a949-e8339a23fbba)
+---
 6. Инициализируйте проект, выполните код.
+
+Применил команды "terraform init -upgrade" и "terraform apply".
 
 ------
 

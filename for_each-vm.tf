@@ -4,7 +4,7 @@ resource "yandex_compute_instance" "db" {
         vm.vm_name => vm
     }
     name = each.value.vm_name
-    platform_id = var.vm_platform
+    platform_id = var.vm_platform_id
     resources {
         cores = each.value.cpu
         memory = each.value.ram
@@ -16,11 +16,12 @@ resource "yandex_compute_instance" "db" {
        }
     }
     scheduling_policy {
-        preemptible = true
+        preemptible = var.vm_is_preemptible
     }
     network_interface {
         subnet_id = yandex_vpc_subnet.develop.id
-        nat       = true
+        nat       = var.vm_has_nat
+        security_group_ids  = [ yandex_vpc_security_group.example.id ]
     }
 
     metadata = {

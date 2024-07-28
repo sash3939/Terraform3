@@ -4,9 +4,9 @@ data "yandex_compute_image" "ubuntu" {
 
 resource "yandex_compute_instance" "web" {
     depends_on = [yandex_compute_instance.db]
-    count = 2
+    count = var.vm_web_count
     name = "web-${count.index+1}"
-    platform_id = var.vm_platform
+    platform_id = var.vm_platform_id
     resources {
         cores = var.vms_resources.cores
         memory = var.vms_resources.memory
@@ -18,12 +18,12 @@ resource "yandex_compute_instance" "web" {
        }
     }
     scheduling_policy {
-        preemptible = true
+        preemptible = var.vm_is_preemptible
     }
     network_interface {
         subnet_id = yandex_vpc_subnet.develop.id
-        nat       = true
-        security_group_ids = ["enpb9799ib4l2sbn4nf6"]
+        nat       = var.vm_has_nat
+        security_group_ids = [yandex_vpc_security_group.example.id]
     }
 
     metadata = {

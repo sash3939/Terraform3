@@ -1,13 +1,14 @@
-resource yandex_compute_disk "default" {
-    count    = 3 
-    name     = "vd-${count.index+1}"
-    type     = "network-hdd"
-    size     = 1 
+resource "yandex_compute_disk" "storage_disk" {
+  count     = var.storage_disks_count
+
+  name      = "${var.storage_disk_name}-${count.index}"
+  zone      = var.default_zone
+  size      = var.storage_disk_size
 }
 
 resource "yandex_compute_instance" "storage" {
-    name = "storage"
-    platform_id = var.vm_platform
+    name = var.vm_storage_instance_name
+    platform_id = var.vm_platform_id
     resources {
         cores = var.vms_resources.cores
         memory = var.vms_resources.memory
@@ -19,17 +20,17 @@ resource "yandex_compute_instance" "storage" {
        }
     }
     dynamic "secondary_disk" {
-        for_each = "${yandex_compute_disk.default.*.id}"
+        for_each = yandex_compute_disk.storage_disk
         content  {
-            disk_id = secondary_disk.value
+            disk_id = lookup(secondary_disk.value, "id", null)
         }        
     }
     scheduling_policy {
-        preemptible = true
+        preemptible = var.vm_is_preemptible
     }
     network_interface {
         subnet_id = yandex_vpc_subnet.develop.id
-        nat       = true
+        nat       = var.vm_storage_has_nat
     }
 
     metadata = {

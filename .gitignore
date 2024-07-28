@@ -10,3 +10,9 @@
 
 # own secret vars store.
 personal.auto.tfvars
+
+*.md
+
+# ansible hosts file
+hosts*
+!hosts.tftpl

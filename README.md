@@ -50,7 +50,7 @@ variable "each_vm" {
 
 ![main and replica](https://github.com/user-attachments/assets/ee50ad16-c6ca-4264-bbb7-572f079196fa)
 ---
-![main and replica yandex](https://github.com/user-attachments/assets/83fe4d14-d093-4bc9-928d-e4adddebd3c4)
+![main and replica yandex](https://github.com/user-attachments/assets/77e9cc74-77f1-4b30-a393-deb0243a6e39)
 ---
 
 

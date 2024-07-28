@@ -85,7 +85,7 @@ variable "each_vm" {
 ![VM storage with disks](https://github.com/user-attachments/assets/ab7149c1-70c3-4839-a13a-5bb0f4eb57d4)
 ---
 
-![meta argument disk_vm](https://github.com/user-attachments/assets/056fd61e-5776-48ae-acbc-d2f2819a9b98)
+![meta argument disk_vm](https://github.com/user-attachments/assets/1e5d3929-80cd-414a-8ab1-073029d4929f)
 ---
 ------
 

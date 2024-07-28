@@ -162,7 +162,7 @@ storage ansible_host=<внешний ip-адрес> fqdn=<полное доме�
 
 Добавлен файл outputs.tf для вывода данных по сложным инстансам (web и db).
 
-![output](https://github.com/user-attachments/assets/be257965-7ffc-4979-9db1-681ec28a2add)
+![output](https://github.com/user-attachments/assets/0cc3faea-f5f2-4d49-b911-b5f7ea7acb0e)
 ---
 
 ------

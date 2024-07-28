@@ -31,7 +31,7 @@
 
 Приложите скриншот входящих правил «Группы безопасности» в ЛК Yandex Cloud или скриншот отказа в предоставлении доступа к preview-версии.
 
-![security_groups_yandex](https://github.com/user-attachments/assets/ced0be81-0a5d-472d-bded-15c4f108e9de)
+![security_groups_yandex](https://github.com/user-attachments/assets/79424ba5-a902-4ab6-a5f7-f404c755f7db)
 ---
 
 ------
